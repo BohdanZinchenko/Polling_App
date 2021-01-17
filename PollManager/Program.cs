@@ -6,7 +6,8 @@ namespace PollManager
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            PollManagerMenu menu = new PollManagerMenu();
+            menu.ShowMenu();
         }
     }
 }
