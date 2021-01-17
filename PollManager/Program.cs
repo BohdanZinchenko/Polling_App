@@ -13,7 +13,7 @@ namespace PollManager
             var readFile = new List<Poll>();
             try
             {
-                readFile  = JsonSerializer.Deserialize<List<Poll>>(File.ReadAllText(path:"PollList.json")); 
+                readFile  = JsonSerializer.Deserialize<List<Poll>>(File.ReadAllText( path:"PollList.json")); 
             }
             catch
             {
