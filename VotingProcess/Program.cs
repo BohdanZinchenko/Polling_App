@@ -16,6 +16,8 @@ namespace VotingProcess
             var wayToLink = JsonSerializer.Deserialize<string>(ClassLinkForPoll.GetLink());
             var linkToList = File.ReadAllText(wayToLink);
             var readfile = JsonSerializer.Deserialize<List<Poll>>(linkToList);
+
+            
         }
     }
 }
