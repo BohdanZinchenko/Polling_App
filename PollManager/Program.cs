@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 
+
 namespace PollManager
 {
     class Program
@@ -22,6 +23,7 @@ namespace PollManager
 
             PollManagerMenu menu = new PollManagerMenu(readFile);
             menu.ShowMenu();
+            ClassLinkForPoll.SetLink();
         }
     }
 }
