@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text.Json;
-using System.Threading.Channels;
+
 
 
 namespace ClassPollLibrary
 {
-    public class RegistrationPerson : Person
+    public class RegistrationPerson : PersonAccount
     { 
-       
-        private int _phone;
-        private string _password;
-
+        
         public void Update(List<RegistrationPerson> listPeople)
         {
             var update = JsonSerializer.Serialize(listPeople);
-            File.WriteAllText(path: "Data.json", update);
+            File.WriteAllText("Accounts.json", update);
         }
         public RegistrationPerson Registration()
         {
@@ -52,16 +50,22 @@ namespace ClassPollLibrary
                 Console.WriteLine("Sorry but you are too young");
                 return null;
             }
-            Console.Write("Your gender ? (Male/Female)   ");
-
-            var gender = Console.ReadLine();
-            if (gender != "Male" || gender != "Female")
+            Console.Write("Your gender ? (Male(M)/Female(F)) ");
+            var gender = Console.ReadKey();
+            bool isMan;
+            switch (gender.Key)
             {
-                Console.WriteLine("Sorry but you must have standard gender ");
-                return null;
+                case ConsoleKey.M:
+                    isMan = true;
+                    break;
+                case ConsoleKey.F:
+                    isMan = false;
+                    break;
+                default:
+                    Console.WriteLine("Sorry but you must have standard gender ");
+                    return null;
             }
-
-            var isMan = gender == "Male";
+            Console.WriteLine();
 
             Console.Write( "Your phone number ? (Without country code (must have 9 symbols ))  ");
             if (!int.TryParse(Console.ReadLine(), out var phone) || phone.ToString().Length != 9)
@@ -85,8 +89,8 @@ namespace ClassPollLibrary
                 LastName = lastName.Trim(),
                 Age = age,
                 IsGenderMan = isMan,
-                _phone = phone,
-                _password = password.Trim()
+                Phone = phone,
+                Password = password.Trim()
 
             };
             return registeredPerson;
@@ -110,8 +114,16 @@ namespace ClassPollLibrary
                 Console.WriteLine("Cant be empty");
                 return null;
             }
-
-            var account = listPeople.Select(x=>x).Single(x => x._password == password && x._phone == phone);
+            RegistrationPerson account;
+            try
+            { 
+                var acs = listPeople.Select(x => x).Where(x => x.Phone == phone && x.Password == password);
+                account = acs.Single();
+            }
+            catch
+            {
+                return null;
+            }
             return account;
 
 

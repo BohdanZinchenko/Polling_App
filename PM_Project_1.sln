@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PollManager", "PollManager\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VotingProcess", "VotingProcess\VotingProcess.csproj", "{541EDED8-8EDA-44E3-825C-DACC6390FE96}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassPollLibrary", "ClassPollLibrarry\ClassPollLibrary.csproj", "{9CBC9593-CE94-45AE-9082-C642FFF18348}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassPollLibrary", "ClassPollLibrary\ClassPollLibrary.csproj", "{C2225467-957E-48B4-A1F1-D02A98E6F7C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{541EDED8-8EDA-44E3-825C-DACC6390FE96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{541EDED8-8EDA-44E3-825C-DACC6390FE96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{541EDED8-8EDA-44E3-825C-DACC6390FE96}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9CBC9593-CE94-45AE-9082-C642FFF18348}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9CBC9593-CE94-45AE-9082-C642FFF18348}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9CBC9593-CE94-45AE-9082-C642FFF18348}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9CBC9593-CE94-45AE-9082-C642FFF18348}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2225467-957E-48B4-A1F1-D02A98E6F7C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2225467-957E-48B4-A1F1-D02A98E6F7C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2225467-957E-48B4-A1F1-D02A98E6F7C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2225467-957E-48B4-A1F1-D02A98E6F7C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
