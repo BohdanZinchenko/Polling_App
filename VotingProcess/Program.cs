@@ -12,6 +12,7 @@ namespace VotingProcess
     {
         static void Main(string[] args)
         {
+            
             var wayToList = JsonSerializer.Deserialize<string>(ClassLinkForPoll.GetLink());
             var linkToList = File.ReadAllText(wayToList);
             var readPollList = JsonSerializer.Deserialize<List<Poll>>(linkToList);
@@ -27,10 +28,17 @@ namespace VotingProcess
                 personList = new List<RegistrationPerson>();
             }
 
-            //PersonMenuWork menu = new PersonMenuWork();
-            //menu.StartMenu(personList);
-            AccountPollWork pollWork = new AccountPollWork();
-            pollWork.MakePoll(readPollList);
+            PersonMenuWork menu = new PersonMenuWork();
+            menu.StartMenu(personList);
+            var personAccount = menu.GetPerson();
+            if (personAccount == null)
+            {
+                return;
+            }
+            AccountPollMenu pollWork = new AccountPollMenu();
+            pollWork.MenuStart(personAccount, readPollList);
+            
+             
 
 
 

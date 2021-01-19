@@ -6,17 +6,65 @@ namespace ClassPollLibrary
 {
     public class AccountPollWork
     {
-        public void MakePoll(List<Poll> polList)
+        public void WriteStat(Poll poll, RegistrationPerson person)
+        {
+            switch (person.IsGenderMan)
+            {
+                case false:
+                    if (person.Age < 18)
+                    {
+                        poll.Stat.WomanTo18 = +1;
+                    }
+                    else if (person.Age >= 18 && person.Age <=30)
+                    {
+                        poll.Stat.WomanFrom18To30 = +1;
+                    }
+                    else
+                    {
+                        poll.Stat.WomanFrom30 = +1;
+                    }
+                    break;
+                case true:
+                    if (person.Age < 18)
+                    {
+                        poll.Stat.ManTo18 = +1;
+                    }
+                    else if (person.Age >= 18 && person.Age <= 30)
+                    {
+                        poll.Stat.ManFrom18To30 = +1;
+                    }
+                    else
+                    {
+                        poll.Stat.ManFrom30 = +1;
+                    }
+                    break;
+            }
+        }
+
+        public void WriteAnswerStat(Poll poll, RegistrationPerson person,string[] answers)
+        {
+            var answersPuck = new ReadyAnswers
+            {
+                VariantAnswer = answers,
+                Age = person.Age,
+                IsMan = person.IsGenderMan
+            };
+            poll.Stat.Answers.Add(answersPuck); 
+        }
+        public void MakePoll(List<Poll> polList, RegistrationPerson person)
         {
             Console.WriteLine("Select a poll what you want to start  ");
             polList.ForEach(x=>Console.WriteLine($"{x.Id} poll :  { x.PollName }" ));
+            
+            
             if (!int.TryParse(Console.ReadLine(), out var idPoll))
             {
                 Console.WriteLine("Incorrect input , age must be correct ");
                 return;
             }
+            
 
-            var selectedPoll = new Poll();
+            Poll selectedPoll;
             try
             {
                 selectedPoll = polList.Select(x => x).Single(x => x.Id == idPoll);
@@ -26,6 +74,14 @@ namespace ClassPollLibrary
                 Console.WriteLine("Error input , you must choose id ");
                 return;
             }
+
+            if (selectedPoll.PassedLogins.Contains(person.Phone))
+            {
+                Console.WriteLine("You have been voted in this poll , choose another one ");
+                return;
+            }
+
+            
 
             var answers = new string[selectedPoll.Questions.Length];
             
@@ -81,8 +137,13 @@ namespace ClassPollLibrary
 
 
             }
+            selectedPoll.PassedLogins.Add(person.Phone);
+            WriteStat(selectedPoll, person);
+            WriteAnswerStat(selectedPoll, person, answers);
 
-                
+
+
+
 
         }
     }

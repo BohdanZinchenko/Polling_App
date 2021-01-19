@@ -1,13 +1,18 @@
-﻿namespace ClassPollLibrary
+﻿using System.Collections.Generic;
+
+namespace ClassPollLibrary
 {
     public class Statistic
     {
-        private int _percentOfMans { get; }
-        private int _percentOfWoman { get; }
-        private int _percentTill18 { get; }
-        private int _percentTill30 { get; }
-        private int _percentMore30 { get; }
-        private Poll poll { get; }
+       public int  ManTo18 { get; set; }
+       public int ManFrom18To30 { get; set; }
+       public int ManFrom30 { get; set; }
+       public int WomanTo18 { get; set; }
+       public int WomanFrom18To30 { get; set; }
+       public int WomanFrom30 { get; set; }
+
+       public List<ReadyAnswers> Answers { get; set; }
+       
 
     }
 }
