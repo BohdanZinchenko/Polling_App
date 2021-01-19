@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace PollManager
+namespace ClassPollLibrary
 {
     public class PollManagerMenu
     {

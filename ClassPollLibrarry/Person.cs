@@ -1,10 +1,10 @@
-﻿namespace PollManager
+﻿namespace ClassPollLibrary
 {
     public class Person
     {
-        public string firstName;
-        public string lastName;
-        public int age;
-        public bool isGenderMan;
+        public string FirstName;
+        public string LastName;
+        public int Age;
+        public bool IsGenderMan;
     }
 }

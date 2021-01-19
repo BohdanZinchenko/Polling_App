@@ -1,4 +1,4 @@
-﻿namespace PollManager
+﻿namespace ClassPollLibrary
 {
     public class VariantAnswers
     {
