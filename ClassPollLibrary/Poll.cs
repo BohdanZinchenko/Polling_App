@@ -8,6 +8,9 @@ namespace ClassPollLibrary
         public string PollName { get; set; }
         public string[] Questions {get; set;}
         public List<VariantAnswers> VariantAnswers { get; set; }
+        public Statistic Stat { get; set; }
+
+        public int PassedLogins { get; set; }
         
     }
 }

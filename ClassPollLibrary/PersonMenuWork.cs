@@ -8,6 +8,7 @@ namespace ClassPollLibrary
     {
         private int _chooseMenu;
         private bool _firstWork =true;
+        private RegistrationPerson _personAccount;
         public void StartMenu(List<RegistrationPerson> persons)
         {
             Console.WriteLine("Its app for social Poll");
@@ -43,6 +44,7 @@ namespace ClassPollLibrary
                             account = persons.Last();
                         }
                         account.Update(persons);
+                        _personAccount = account;
                         _firstWork = false;
                         break;
                     case 2:
@@ -53,6 +55,7 @@ namespace ClassPollLibrary
                         }
                         else
                         {
+                            _personAccount = account;
                             _firstWork = false;
                         }
                         break;
@@ -64,6 +67,11 @@ namespace ClassPollLibrary
             }
 
 
+        }
+
+        public RegistrationPerson GetPerson()
+        {
+            return _personAccount;
         }
     }
 }
