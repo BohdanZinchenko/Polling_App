@@ -15,19 +15,24 @@ namespace VotingProcess
             var wayToList = JsonSerializer.Deserialize<string>(ClassLinkForPoll.GetLink());
             var linkToList = File.ReadAllText(wayToList);
             var readPollList = JsonSerializer.Deserialize<List<Poll>>(linkToList);
-            List<RegistrationPerson> PersonList;
+            List<RegistrationPerson> personList;
             try
             {
-                PersonList = JsonSerializer.Deserialize<List<RegistrationPerson>>(@"Accounts.json");
+                var readFile = File.ReadAllText("Accounts.json");
+                personList = JsonSerializer.Deserialize<List<RegistrationPerson>>(readFile);
             }
             catch
             {
                 Console.WriteLine("You will be first person in this program , congratulation");
-                PersonList = new List<RegistrationPerson>();
+                personList = new List<RegistrationPerson>();
             }
 
-            
-            
+            //PersonMenuWork menu = new PersonMenuWork();
+            //menu.StartMenu(personList);
+            AccountPollWork pollWork = new AccountPollWork();
+            pollWork.MakePoll(readPollList);
+
+
 
 
         }

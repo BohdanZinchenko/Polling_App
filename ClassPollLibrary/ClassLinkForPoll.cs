@@ -12,7 +12,7 @@ namespace ClassPollLibrary
         
         public   static  string GetLink()
         {
-            var file = File.ReadAllText($"{TryGetSolutionDirectoryInfo()}\\ClassPollLibrary\\Link.Json");
+            var file = File.ReadAllText($"{TryGetSolutionDirectoryInfo()}\\ClassPollLibrary\\Link.json");
             return file;
         }
 

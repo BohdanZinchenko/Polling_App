@@ -11,21 +11,23 @@ namespace ClassPollLibrary
         public void StartMenu(List<RegistrationPerson> persons)
         {
             Console.WriteLine("Its app for social Poll");
-            Console.WriteLine("Do you agree for use your personal information ? ");
+            Console.WriteLine("Do you agree for use your personal information ?  (Press Y if Yes)");
             if (Console.ReadKey().Key != ConsoleKey.Y)
             {
                 Console.WriteLine("Sorry you can't vote");
                 return;
             }
-
+            Console.WriteLine();
             while (_firstWork)
             {
                 RegistrationPerson account = new RegistrationPerson();
                 Console.WriteLine("1: Registration");
                 Console.WriteLine("2: Login");
-                while (!int.TryParse(Console.ReadLine(), out _chooseMenu) && _chooseMenu <= 0 || _chooseMenu > 2)
+                Console.WriteLine("3: Exit");
+                while (!int.TryParse(Console.ReadLine(), out _chooseMenu) && _chooseMenu <= 0 || _chooseMenu > 3)
                 {
-                    Console.WriteLine("Error input , chose something from 1 to 2");
+                    Console.WriteLine("Error input , chose something from 1 to 3");
+                    break;
                 }
                 switch (_chooseMenu)
                 {
@@ -54,6 +56,10 @@ namespace ClassPollLibrary
                             _firstWork = false;
                         }
                         break;
+                    case 3:
+                        return;
+                    default:
+                        continue;
                 }
             }
 
