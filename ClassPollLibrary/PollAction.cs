@@ -10,23 +10,11 @@ namespace ClassPollLibrary
         private static int _id;
         public PollAction(List<Poll> pollList)
         {
-            if (pollList.Count <= 0)
-            {
-                _id = 0;
-            }
-            else
-            {
-                _id = pollList.Last().Id;
-            }
-            
+            _id = pollList.Count <= 0 ? 0 : pollList.Last().Id;
             _id++;
         }
 
-        public void Update(List<Poll> pollList)
-        {
-            var update = JsonSerializer.Serialize(pollList);
-            File.WriteAllText(path: "PollList.json", update);
-        }
+        
         public Poll AddPoll()
         {
             
@@ -38,36 +26,50 @@ namespace ClassPollLibrary
                 return null;
             }
 
-            var questionsCount = 1;
             Console.WriteLine("How many questions will be in this poll");
-            if (!int.TryParse(Console.ReadLine(), out questionsCount))
+            if (!int.TryParse(Console.ReadLine(), out var questionsCount))
             {
                 Console.WriteLine("Incorrect input ,  count must be integer ");
                 return null;
             }
-            string[] questions = new string[questionsCount];
-            List<VariantAnswers> answers = new List<VariantAnswers>();
+
+            if (questionsCount <= 0)
+            {
+                Console.WriteLine("incorrect input ");
+                return null;
+            } 
+
+            var questions = new string[questionsCount];
+            var answers = new List<VariantAnswers>();
             for (int i = 0; i < questionsCount; i++)
             {
                 Console.WriteLine( $"Input question number {i+1}");
                 questions[i] = Console.ReadLine();
                 Console.WriteLine("This question will have some variants of answer ? ");
                 Console.WriteLine("If Yes , press Y , else press any another key  ");
+
                 var isVariable = Console.ReadKey();
+                Console.WriteLine();
+
                 if (isVariable.Key == ConsoleKey.Y)
                 {
-                    var variants = 2;
                     Console.WriteLine("How many variants answer this question will have ?");
-                    if (!int.TryParse(Console.ReadLine(), out variants))
+                    if (!int.TryParse(Console.ReadLine(), out var variants))
                     {
                         Console.WriteLine("Incorrect input ,  count must be integer ");
                         return null;
                     }
 
-                    VariantAnswers variant = new VariantAnswers();
+                    if (variants <= 0)
+                    {
+                        Console.WriteLine("Incorrect input ");
+                        return null;
+                    }
+
+                    var variant = new VariantAnswers();
                     variant.IndexQuestion = i;
-                    string[] variantsAnswer = new string[variants];
-                    for (int k = 0; k < variants; k++)
+                    var variantsAnswer = new string[variants];
+                    for (var k = 0; k < variants; k++)
                     {
                         Console.WriteLine($"Insert {k + 1} variant ");
                         variantsAnswer[k] =  Console.ReadLine();
@@ -84,8 +86,11 @@ namespace ClassPollLibrary
                 Id = _id,
                 PollName = name,
                 Questions = questions,
-                VariantAnswers = answers
-
+                VariantAnswers = answers,
+                Stat = new Statistic() { ManFrom18To30 = 0,ManFrom30 = 0,ManTo18 = 0,WomanFrom18To30 = 0,WomanFrom30 = 0,WomanTo18 = 0 ,Votes = 0,Answers = new List<ReadyAnswers>()},
+                PassedLogins = new List<int>()
+                
+                
             };
             return poll;
 

@@ -18,7 +18,7 @@ namespace ClassPollLibrary
             var update = JsonSerializer.Serialize(listPeople);
             File.WriteAllText("Accounts.json", update);
         }
-        public RegistrationPerson Registration()
+        public RegistrationPerson Registration(List<Poll> pollList , List<RegistrationPerson> listPeople)
         {
             
             Console.Write("What is your name ?   ");
@@ -73,6 +73,22 @@ namespace ClassPollLibrary
                 Console.WriteLine("incorrect phone number ");
                 return null;
             }
+           
+            try
+            {
+                var registered = listPeople.Select(x => x).Where(x => x.Phone == phone);
+                if (registered.Any())
+                {
+                    Console.WriteLine("This account is already registered");
+                    return null;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Some Add another account with the same login directly in file ");
+                return null;
+            }
+
 
             Console.Write("Create a password ");
             var password = Console.ReadLine();
@@ -96,6 +112,7 @@ namespace ClassPollLibrary
             return registeredPerson;
         }
 
+        
         public RegistrationPerson LoginIn(List<RegistrationPerson> listPeople)
         {
 

@@ -9,15 +9,9 @@ namespace ClassPollLibrary
         private int _chooseMenu;
         private bool _firstWork =true;
         private RegistrationPerson _personAccount;
-        public void StartMenu(List<RegistrationPerson> persons)
+        public void StartMenu(List<RegistrationPerson> persons,List<Poll> pollList)
         {
-            Console.WriteLine("Its app for social Poll");
-            Console.WriteLine("Do you agree for use your personal information ?  (Press Y if Yes)");
-            if (Console.ReadKey().Key != ConsoleKey.Y)
-            {
-                Console.WriteLine("Sorry you can't vote");
-                return;
-            }
+            
             Console.WriteLine();
             while (_firstWork)
             {
@@ -33,7 +27,7 @@ namespace ClassPollLibrary
                 switch (_chooseMenu)
                 {
                     case 1:
-                        persons.Add(account.Registration());
+                        persons.Add(account.Registration(pollList,persons));
                         if (persons.Last() == null)
                         {
                             persons.Remove(persons.Last());
@@ -67,6 +61,17 @@ namespace ClassPollLibrary
             }
 
 
+        }
+
+        public void AcceptPersonalInfo()
+        {
+            Console.WriteLine("Its app for social Poll");
+            Console.WriteLine("Do you agree for use your personal information ?  (Press Y if Yes)");
+            if (Console.ReadKey().Key != ConsoleKey.Y)
+            {
+                Console.WriteLine("Sorry you can't vote");
+                return;
+            }
         }
 
         public RegistrationPerson GetPerson()

@@ -4,6 +4,7 @@ namespace ClassPollLibrary
 {
     public class Statistic
     {
+        public int Votes { get; set; }
        public int  ManTo18 { get; set; }
        public int ManFrom18To30 { get; set; }
        public int ManFrom30 { get; set; }
