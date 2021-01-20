@@ -10,7 +10,7 @@ namespace ClassPollLibrary
         public List<VariantAnswers> VariantAnswers { get; set; }
         public Statistic Stat { get; set; }
 
-        public int PassedLogins { get; set; }
+        public List<int> PassedLogins { get; set; }
         
     }
 }

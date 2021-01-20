@@ -8,34 +8,35 @@ namespace ClassPollLibrary
     {
         public void WriteStat(Poll poll, RegistrationPerson person)
         {
+            poll.Stat.Votes++;
             switch (person.IsGenderMan)
             {
                 case false:
                     if (person.Age < 18)
                     {
-                        poll.Stat.WomanTo18 = +1;
+                        poll.Stat.WomanTo18++;
                     }
                     else if (person.Age >= 18 && person.Age <=30)
                     {
-                        poll.Stat.WomanFrom18To30 = +1;
+                        poll.Stat.WomanFrom18To30++;
                     }
                     else
                     {
-                        poll.Stat.WomanFrom30 = +1;
+                        poll.Stat.WomanFrom30++;
                     }
                     break;
                 case true:
                     if (person.Age < 18)
                     {
-                        poll.Stat.ManTo18 = +1;
+                        poll.Stat.ManTo18++;
                     }
                     else if (person.Age >= 18 && person.Age <= 30)
                     {
-                        poll.Stat.ManFrom18To30 = +1;
+                        poll.Stat.ManFrom18To30++;
                     }
                     else
                     {
-                        poll.Stat.ManFrom30 = +1;
+                        poll.Stat.ManFrom30++;
                     }
                     break;
             }
@@ -54,7 +55,8 @@ namespace ClassPollLibrary
         public void MakePoll(List<Poll> polList, RegistrationPerson person)
         {
             Console.WriteLine("Select a poll what you want to start  ");
-            polList.ForEach(x=>Console.WriteLine($"{x.Id} poll :  { x.PollName }" ));
+            var sortedPolList = polList.Select(x => x).OrderBy(x => x.Id).ToList();
+            sortedPolList.ForEach(x=>Console.WriteLine($"{x.Id} poll :  { x.PollName }" ));
             
             
             if (!int.TryParse(Console.ReadLine(), out var idPoll))
@@ -137,9 +139,14 @@ namespace ClassPollLibrary
 
 
             }
+
             selectedPoll.PassedLogins.Add(person.Phone);
             WriteStat(selectedPoll, person);
             WriteAnswerStat(selectedPoll, person, answers);
+            var newPoll = selectedPoll;
+            polList.Remove(selectedPoll);
+            polList.Add(newPoll);
+            Update.UpdateFile(polList);
 
 
 

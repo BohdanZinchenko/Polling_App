@@ -15,7 +15,7 @@ namespace PollManager
             var readFile = new List<Poll>();
             try
             {
-                readFile  = JsonSerializer.Deserialize<List<Poll>>(File.ReadAllText( path:"PollList.json")); 
+                readFile  = JsonSerializer.Deserialize<List<Poll>>(File.ReadAllText(ClassLinkForPoll.GetPollLink())); 
             }
             catch
             {
@@ -24,7 +24,7 @@ namespace PollManager
 
             PollManagerMenu menu = new PollManagerMenu(readFile);
             menu.ShowMenu();
-            ClassLinkForPoll.SetLink();
+            
         }
     }
 }

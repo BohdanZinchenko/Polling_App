@@ -19,7 +19,7 @@ namespace ClassPollLibrary
             
             while (true)
             {
-
+                var stat = new StatShow();
                 var action = new PollAction(_pollList);
                 Console.WriteLine("1: Add poll ");
                 Console.WriteLine("2: Delete poll");
@@ -35,13 +35,14 @@ namespace ClassPollLibrary
                     case 1:
                         _pollList.Add(action.AddPoll());
                         if (_pollList.Last() == null) _pollList.Remove(_pollList.Last());
-                        action.Update(_pollList);
+                        Update.UpdateFile(_pollList);
                         break;
                     case 2:
                         _pollList.Remove(action.PollDelete(_pollList));
-                        action.Update(_pollList);
+                        Update.UpdateFile(_pollList);
                         break;
                     case 3:
+                        stat.ShowStat(_pollList);
                         break;
                     case 4:
                         return;

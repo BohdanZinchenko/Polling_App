@@ -10,19 +10,12 @@ namespace ClassPollLibrary
     public static class ClassLinkForPoll
     {
         
-        public   static  string GetLink()
+        public  static  string GetPollLink()
         {
-            var file = File.ReadAllText($"{TryGetSolutionDirectoryInfo()}\\ClassPollLibrary\\Link.json");
-            return file;
+            var link= $"{TryGetSolutionDirectoryInfo()}\\ClassPollLibrary\\PollList.Json";
+            return link;
         }
 
-        public static void SetLink()
-        {
-            var wayToFile = $"{TryGetSolutionDirectoryInfo()}\\ClassPollLibrary\\Link.Json";
-            var linkInfo = JsonSerializer.Serialize(Path.GetFullPath("PollList.json"));
-            File.WriteAllText(wayToFile, linkInfo);
-
-        }
         public static DirectoryInfo TryGetSolutionDirectoryInfo(string currentPath = null)
         {
             var directory = new DirectoryInfo(
