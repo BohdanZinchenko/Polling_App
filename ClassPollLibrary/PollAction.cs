@@ -20,9 +20,9 @@ namespace ClassPollLibrary
             
             Console.Write("Name of poll = ");
             var name = Console.ReadLine();
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(name.Trim()))
             {
-                Console.WriteLine("Incorrect input ");
+                Console.WriteLine("Cant be empty");
                 return null;
             }
 
@@ -41,10 +41,21 @@ namespace ClassPollLibrary
 
             var questions = new string[questionsCount];
             var answers = new List<VariantAnswers>();
+            Console.WriteLine("Input your questions , if you want stop it , enter 'back'");
             for (int i = 0; i < questionsCount; i++)
             {
                 Console.WriteLine( $"Input question number {i+1}");
                 questions[i] = Console.ReadLine();
+                if (string.IsNullOrEmpty(questions[i].Trim()))
+                {
+                    Console.WriteLine("Cant be empty");
+                    i--;
+                    continue;
+                }
+                if (questions[i] == "back")
+                {
+                    return null;
+                }
                 Console.WriteLine("This question will have some variants of answer ? ");
                 Console.WriteLine("If Yes , press Y , else press any another key  ");
 
@@ -73,6 +84,12 @@ namespace ClassPollLibrary
                     {
                         Console.WriteLine($"Insert {k + 1} variant ");
                         variantsAnswer[k] =  Console.ReadLine();
+                        if (string.IsNullOrEmpty(variantsAnswer[k].Trim()))
+                        {
+                            Console.WriteLine("Cant be empty");
+                            k--;
+                            continue;
+                        }
                     }
                     variant.VariantAnswer = variantsAnswer;
                     answers.Add(variant);

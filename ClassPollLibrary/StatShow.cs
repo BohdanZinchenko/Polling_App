@@ -68,35 +68,35 @@ namespace ClassPollLibrary
             Console.WriteLine("       Statistic about answers    ");
             Console.WriteLine();
 
-            
+            var index = 0;
             foreach (var question in selectedPoll.Questions)
             {
                 var count = 0;
                 var findElem = new FindElem();
                 Console.WriteLine($"For the question {question} ");
+                
                 try
                 {
                     foreach (var x in selectedPoll.Stat.Answers)
                     {
-                        foreach (var item in x.VariantAnswer)
-                        {
-                            foreach (var item2 in x.VariantAnswer)
-                            {
-                                if (item == item2)
-                                {
-                                    count++;
-                                }
 
-                                if (count >= findElem.Count)
-                                {
-                                    findElem.Count = count;
-                                    findElem.Answer = item;
-                                }
+                        foreach (var y in selectedPoll.Stat.Answers)
+                        {
+                            if (x.VariantAnswer[index] == y.VariantAnswer[index])
+                            {
+                                count++;
+                            }
+                            if (count >= findElem.Count)
+                            {
+                                findElem.Count = count;
+                                findElem.Answer = x.VariantAnswer[index];
                             }
                         }
+
                     }
                     Console.WriteLine($"Most popular answer was {findElem.Answer}");
                     Console.WriteLine();
+                    index++;
                 }
                 catch
                 {
