@@ -1,0 +1,1 @@
+[{"Id":1,"PollName":"Test Poll","Questions":["How are you?","Lets start?"],"VariantAnswers":[{"IndexQuestion":1,"VariantAnswer":["Yes","No"]}],"Stat":{"Votes":0,"ManTo18":0,"ManFrom18To30":0,"ManFrom30":0,"WomanTo18":0,"WomanFrom18To30":0,"WomanFrom30":0,"Answers":[]},"PassedLogins":[]}]

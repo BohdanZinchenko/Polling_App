@@ -16,7 +16,7 @@ namespace ClassPollLibrary
                 var accountWork = new AccountPollWork();
                 Console.WriteLine("1: Vote ");
                 Console.WriteLine("2: Logout");
-                while (!int.TryParse(Console.ReadLine(), out _chooseMenu) && _chooseMenu <= 0 || _chooseMenu > 3)
+                while (!int.TryParse(Console.ReadLine(), out _chooseMenu) && _chooseMenu <= 0 || _chooseMenu > 2)
                 {
                     Console.WriteLine("Error input , chose something from 1 to 2");
                     break;
